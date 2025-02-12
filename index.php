@@ -10,7 +10,7 @@ $result = mysqli_query($conn, "SELECT * FROM siswa");
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Data Siswa</title>
+    <title>Data Siswa 2025</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
