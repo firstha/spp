@@ -1,9 +1,9 @@
 <?php
-session_start();
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit;
-}
+// session_start();
+// if (!isset($_SESSION['username'])) {
+//     header("Location: login.php");
+//     exit;
+// }
 include 'koneksi.php';
 
 $sql = "SELECT pembayaran.id_pembayaran, siswa.nisn, siswa.nama, kelas.nama_kelas, spp.tahun, spp.nominal, pembayaran.tgl_bayar, pembayaran.bulan_dibayar, pembayaran.tahun_dibayar, pembayaran.jumlah_bayar, petugas.nama_petugas
@@ -22,6 +22,9 @@ $result = $conn->query($sql);
     <title>History Pembayaran SPP</title>
 </head>
 <style>
+    *{
+        font-family: sans-serif;
+    }
     table {
       border-collapse: collapse;
       width: 100%;
@@ -41,8 +44,8 @@ $result = $conn->query($sql);
 
     <h2>History Pembayaran SPP</h2><br>
     <div>
-    <a class="btn" href="tambah.php">Tambah Data</a><br>
-    <a class="btn" href="logout.php">Logout</a>
+<!--     <a class="btn" href="tambah.php">Tambah Data</a><br>
+    <a class="btn" href="logout.php">Logout</a> -->
 </div><br><br>
     <table>
         <tr>
