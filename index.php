@@ -5,77 +5,80 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 include 'koneksi.php';
-$result = mysqli_query($conn, "SELECT * FROM siswa");
+
+$sql = "SELECT pembayaran.id_pembayaran, siswa.nisn, siswa.nama, kelas.nama_kelas, spp.tahun, spp.nominal, pembayaran.tgl_bayar, pembayaran.bulan_dibayar, pembayaran.tahun_dibayar, pembayaran.jumlah_bayar, petugas.nama_petugas
+    FROM pembayaran
+    JOIN siswa ON pembayaran.nisn = siswa.nisn
+    JOIN kelas ON siswa.id_kelas = kelas.id_kelas
+    JOIN spp ON pembayaran.id_spp = spp.id_spp
+    JOIN petugas ON pembayaran.id_petugas = petugas.id_petugas
+    ORDER BY pembayaran.tgl_bayar DESC";
+$result = $conn->query($sql);
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Data Siswa 2025</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>History Pembayaran SPP</title>
 </head>
-
 <style>
-
     table {
       border-collapse: collapse;
       width: 100%;
     }
-    .center{
-        text-align: center;
+    table, th, td{
+        border: 1px solid black;
     }
-    .btn {
-        padding: 5px;
-        color: #fff;
-        text-decoration: none;
-        background-color: #007bff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: 0.3s ease;
-    }
-    .btn:hover{
-        background-color: #0056b3;
-    }
-
     th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #DDD;
+        padding: 8px;
+        text-align: left;
     }
     th{
-        background-color: #D6EEEE;
-    }
-
-    tr:hover {
-        background-color: #D6EEEE;
+        background-color: #f2f2f2;
     }
 </style>
-
 <body>
 
-    <h2 class="center">Data Siswa</h2><br>
+    <h2>History Pembayaran SPP</h2><br>
     <div>
-    <a class="btn" href="tambah.php">Tambah Data</a>
+    <a class="btn" href="tambah.php">Tambah Data</a><br>
     <a class="btn" href="logout.php">Logout</a>
 </div><br><br>
-    <table border="1">
+    <table>
         <tr>
+            <th>ID Pembayaran</th>
             <th>NISN</th>
-            <th>Nama</th>
+            <th>Nama Siswa</th>
             <th>Kelas</th>
-            <th>Aksi</th>
+            <th>Tahun SPP</th>
+            <th>Nominal SPP</th>
+            <th>Tanggal Bayar</th>
+            <th>Bulan Bayar</th>
+            <th>Tahun Bayar</th>
+            <th>Jumlah Bayar</th>
+            <th>Petugas</th>
         </tr>
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-        <tr>
-            <td><?= $row['nisn'] ?></td>
-            <td><?= $row['nama'] ?></td>
-            <td><?= $row['id_kelas'] ?></td>
-            <td>
-                <a href="edit.php?nisn=<?= $row['nisn'] ?>">Edit</a> |
-                <a href="hapus.php?nisn=<?= $row['nisn'] ?>" onclick="return confirm('Yakin ingin menghapus data?')">Hapus</a>
-            </td>
-        </tr>
-        <?php } ?>
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>
+                    <td>" . $row["id_pembayaran"] . "</td>
+                    <td>" . $row["nisn"] . "</td>
+                    <td>" . $row["nama"] . "</td>
+                    <td>" . $row["nama_kelas"] . "</td>
+                    <td>" . $row["tahun"] . "</td>
+                    <td>Rp " . number_format($row["nominal"]) . "</td>
+                    <td>" . $row["tgl_bayar"] . "</td>
+                    <td>" . $row["bulan_dibayar"] . "</td>
+                    <td>" . $row["tahun_dibayar"] . "</td>
+                    <td>Rp " . number_format($row["jumlah_bayar"]) . "</td>
+                    <td>" . $row["nama_petugas"] . "</td>
+                </tr>";
+        }
+        } else {
+            echo "<tr><td colspan='11'>Tidak ada data pembayaran.</td></tr>";
+        }
+        ?>
     </table>
 </body>
 </html>
