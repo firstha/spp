@@ -1,10 +1,10 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit;
 }
-include 'koneksi.php';
+include '../koneksi.php';
 
 $sql = "SELECT pembayaran.id_pembayaran, siswa.nisn, siswa.nama, kelas.nama_kelas, spp.tahun, spp.nominal, pembayaran.tgl_bayar, pembayaran.bulan_dibayar, pembayaran.tahun_dibayar, pembayaran.jumlah_bayar, petugas.nama_petugas
     FROM pembayaran
@@ -45,7 +45,8 @@ $result = $conn->query($sql);
     <h2>History Pembayaran SPP</h2><br>
     <div>
 <!--     <a class="btn" href="tambah.php">Tambah Data</a><br> -->
-    <a class="btn" href="logout.php">Logout</a>
+    <a class="btn" href="../logout.php">Logout</a><br><br>
+    <a href="entri_pembayaran.php">Tambah Pembayaran</a>
 </div><br><br>
     <table>
         <tr>
