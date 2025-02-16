@@ -1,8 +1,8 @@
 <?php
-require 'functions.php';
+require 'functions_kelas.php';
 
-$id_spp = $_GET["id_spp"];
-if( hapus($id_spp) > 0 ) {
+$id_kelas = $_GET["id_kelas"];
+if( hapus($id_kelas) > 0 ) {
 	echo "<script>
 			alert('data berhasil dihapus!');
 			document.location.href = 'index.php';

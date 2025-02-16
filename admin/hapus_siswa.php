@@ -1,8 +1,8 @@
 <?php
-require 'functions.php';
+require 'functions_siswa.php';
 
-$id_petugas = $_GET["id_petugas"];
-if( hapus($id_petugas) > 0 ) {
+$nisn = $_GET["nisn"];
+if( hapus($nisn) > 0 ) {
 	echo "<script>
 			alert('data berhasil dihapus!');
 			document.location.href = 'index.php';

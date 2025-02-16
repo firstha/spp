@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+header{
+    padding: 2rem 0;
+    background: rgb(17, 49, 136);
+    color: #fff;
+}
+nav{
+    background: rgb(14, 38, 103);
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    /* margin: 0 0 1rem 0; */
+    /* tag : atas kanan bawah kiri */
+    /* tag : atas-bawah kiri-kanan */
+    /* tag : semua */
+}
+nav a{
+    text-decoration: none;
+    padding: 1rem 0;
+    color: #fff;
+    margin-right: 1rem;
+}
+
+/* table */
+table{
+    width: 100%;
+    border-collapse: collapse;
+    border-color: #ddd;
+}
+table th, table td{
+    padding: 10px;
+}
+table thead{
+    background: #ddd;
+    color: #000;
+}
+/* table tbody tr:nth-child(even){
+    background: #f1f1f1;
+} */
+.btn{
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.3rem;
+    text-decoration: none;
+    border: none;
+}
+.btn-merah{
+    background: red;
+    color: #fff;
+}
+.btn-hijau{
+    background: green;
+    color: #fff;
+}
+.btn-kuning{
+    background: rgb(255, 208, 0);
+    color: #fff;
+}
+form{
+    border: 1px solid #ccc;
+    padding: 1rem;
+    width: 400px;
+    border-radius: 0.3rem;
+}
+label{
+    display: block;
+    margin-top: 1rem;
+}
+input, select, option{
+    padding: 7px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+}

@@ -3,7 +3,8 @@ session_start();
 if (!isset($_SESSION['username']) || !isset($_SESSION['level']) || ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'petugas')) {
     die("Akses ditolak! hanya admin dan petugas yang dapat mengakses.");
 }
-include '../koneksi.php';
+include 'koneksi.php';
+include 'layouts/header.php';
 
 $siswaQuery = "SELECT nisn, nama FROM siswa ORDER BY nama";
 $siswaResult = $conn->query($siswaQuery);
@@ -31,18 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 
  ?>
-
- <!DOCTYPE html>
- <html>
- <head>
- 	<meta charset="utf-8">
- 	<meta name="viewport" content="width=device-width, initial-scale=1">
- 	<title>Entri Pembayaran Spp</title>
- </head>
- <body>
-
+ <div class="container">
  	<h2>Entri Pembayaran SPP</h2>
-
  	<form method="post">
  		<label>Pilih Siswa:</label>
  		<select name="nisn" required>
@@ -62,6 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
  		<input type="number" name="jumlah_bayar" required><br><br>
  		<button type="submit">Simpan Pembayaran</button>
  	</form>
- 
+ </div>
  </body>
  </html>

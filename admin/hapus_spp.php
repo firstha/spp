@@ -1,8 +1,8 @@
 <?php
-require 'functions.php';
+require 'functions_spp.php';
 
-$id_pembayaran = $_GET["id_pembayaran"];
-if( hapus($id_pembayaran) > 0 ) {
+$id_spp = $_GET["id_spp"];
+if( hapus($id_spp) > 0 ) {
 	echo "<script>
 			alert('data berhasil dihapus!');
 			document.location.href = 'index.php';

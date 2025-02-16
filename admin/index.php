@@ -4,7 +4,8 @@ if (!isset($_SESSION['username'])) {
     header("Location: ../login.php");
     exit;
 }
-include '../koneksi.php';
+include 'koneksi.php';
+include 'layouts/header.php';
 
 $sql = "SELECT pembayaran.id_pembayaran, siswa.nisn, siswa.nama, kelas.nama_kelas, spp.tahun, spp.nominal, pembayaran.tgl_bayar, pembayaran.bulan_dibayar, pembayaran.tahun_dibayar, pembayaran.jumlah_bayar, petugas.nama_petugas
     FROM pembayaran
@@ -16,40 +17,11 @@ $sql = "SELECT pembayaran.id_pembayaran, siswa.nisn, siswa.nama, kelas.nama_kela
 $result = $conn->query($sql);
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>History Pembayaran SPP</title>
-</head>
-<style>
-    *{
-        font-family: sans-serif;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    table, th, td{
-        border: 1px solid black;
-    }
-    th, td {
-        padding: 8px;
-        text-align: left;
-    }
-    th{
-        background-color: #f2f2f2;
-    }
-</style>
-<body>
-
-    <h2>History Pembayaran SPP</h2><br>
-    <div>
-<!--     <a class="btn" href="tambah.php">Tambah Data</a><br> -->
-    <a class="btn" href="../logout.php">Logout</a><br><br>
-    <a href="entri_pembayaran.php">Tambah Pembayaran</a>
-</div><br><br>
+<h1 style="color: darkblue; margin-left: 50px;">HALAMAN ADMIN</h1><br>
+    <h3 style="margin-left: 50px;">History Pembayaran SPP</h3> <a style="margin-left: 83%;" href="entri_pembayaran.php" class="btn btn-hijau">Entri data Pembayaran</a><br><br><br>
     <table>
-        <tr>
+        <thead>
+            <tr>
             <th>ID Pembayaran</th>
             <th>NISN</th>
             <th>Nama Siswa</th>
@@ -62,7 +34,9 @@ $result = $conn->query($sql);
             <th>Jumlah Bayar</th>
             <th>Petugas</th>
         </tr>
-        <?php
+        </thead>
+        <tbody>
+            <?php
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
@@ -83,6 +57,8 @@ $result = $conn->query($sql);
             echo "<tr><td colspan='11'>Tidak ada data pembayaran.</td></tr>";
         }
         ?>
+        </tbody>
     </table>
-</body>
-</html>
+<?php 
+require_once('layouts/footer.php');
+?>

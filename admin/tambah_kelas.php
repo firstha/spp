@@ -1,5 +1,6 @@
 <?php 
-require 'functions.php';
+require 'functions_kelas.php';
+require 'layouts/header.php';
 
 if( isset($_POST["submit"]) ) {
 	if( tambah($_POST) > 0 ) {
@@ -19,34 +20,18 @@ if( isset($_POST["submit"]) ) {
 	}
 }
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Tambah Data Kelas</title>
-</head>
-<body>
+	<div class="container">
 	<h1>Tambah Data Kelas</h1>
-
 	<form action="" method="post" enctype="multipart/form-data">
-		<ul>
-			<li>
 				<label for="id_kelas">ID KELAS :</label>
 				<input type="number" name="id_kelas" id="id_kelas" required>
-			</li>
-			<li>
 				<label for="nama_kelas">NAMA KELAS :</label>
 				<input type="text" name="nama_kelas" id="nama_kelas">
-			</li>
-			<li>
 				<label for="kompetensi_keahlian">KOMPETENSI KEAHLIAN :</label>
 				<input type="text" name="kompetensi_keahlian" id="kompetensi_keahlian">
-			</li>
-			<li>
 				<button type="submit" name="submit">Tambah Data!</button>
-			</li>
-		</ul>
 	</form>
+</div>
 
 </body>
 </html>

@@ -1,8 +1,8 @@
 <?php
-require 'functions.php';
+require 'functions_pembayaran.php';
 
-$nisn = $_GET["nisn"];
-if( hapus($nisn) > 0 ) {
+$id_pembayaran = $_GET["id_pembayaran"];
+if( hapus($id_pembayaran) > 0 ) {
 	echo "<script>
 			alert('data berhasil dihapus!');
 			document.location.href = 'index.php';
